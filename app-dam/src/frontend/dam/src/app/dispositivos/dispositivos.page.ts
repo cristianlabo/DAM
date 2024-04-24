@@ -24,6 +24,7 @@ export class DispositivosPage implements OnInit, OnDestroy {
     // })
   }
 
+  
   async ngOnInit() {
     await this._dispositivoService.getDispositivos()
       .then((dispositivos) => {

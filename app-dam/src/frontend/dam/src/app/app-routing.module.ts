@@ -15,12 +15,15 @@ const routes: Routes = [
   },
   {
     path: 'dispositivos',
-    loadChildren: () => import('./dispositivos/dispositivos.module').then( m => m.DispositivosPageModule),
-    canActivate: [AuthGuard]
+    loadChildren: () => import('./dispositivos/dispositivos.module').then( m => m.DispositivosPageModule)/* ,
+    canActivate: [AuthGuard] */
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then(m => m.LoginModule)
+    /* loadChildren: () => import('./login/login.module').then(m => m.LoginModule) */
+    loadChildren: () => import('./dispositivos/dispositivos.module').then( m => m.DispositivosPageModule)/* ,
+    canActivate: [AuthGuard]
+ */
   },
 ];
 

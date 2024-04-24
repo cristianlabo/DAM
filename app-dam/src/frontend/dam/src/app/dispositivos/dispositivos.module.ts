@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { DispositivosPageRoutingModule } from './dispositivos-routing.module';
 
 import { DispositivosPage } from './dispositivos.page';
+import { ListadoDispositivoComponent } from './listado-dispositivo/listado-dispositivo.component';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { DispositivosPage } from './dispositivos.page';
     IonicModule,
     DispositivosPageRoutingModule
   ],
-  declarations: [DispositivosPage]
+  declarations: [DispositivosPage,ListadoDispositivoComponent]
 })
 export class DispositivosPageModule {}
