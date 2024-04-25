@@ -3,6 +3,8 @@ import { Observable, Subscription, fromEvent, interval, map } from 'rxjs';
 import { DispositivoService } from '../services/dispositivo.service';
 import { ActivatedRoute } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-dispositivos',
   templateUrl: './dispositivos.page.html',

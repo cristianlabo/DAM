@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { Dispositivo } from 'src/app/interfaces/interfaces';
 import { DispositivoService } from 'src/app/services/dispositivo.service';
+
 
 /* interface Dispositivo {
   id: number,
@@ -13,8 +14,11 @@ import { DispositivoService } from 'src/app/services/dispositivo.service';
   templateUrl: './listado-dispositivo.component.html',
   styleUrls: ['./listado-dispositivo.component.scss'],
 })
+
+
 export class ListadoDispositivoComponent  implements OnInit {
 
+ public DetalleState: boolean = false
  listado:Dispositivo[]=[];
   
   constructor( private _dispositivoService: DispositivoService) { 
@@ -37,5 +41,12 @@ export class ListadoDispositivoComponent  implements OnInit {
     console.log('Me ejecuto primero')
   }
 
+  VerDetalle () {
+   this.DetalleState = true
+  }
+
+  CerrarDetalle () {
+    this.DetalleState = false
+   }
  
 }
