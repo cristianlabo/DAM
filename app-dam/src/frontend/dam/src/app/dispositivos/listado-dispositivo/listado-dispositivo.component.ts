@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { Dispositivo } from 'src/app/interfaces/interfaces';
+import { DispositivoService } from 'src/app/services/dispositivo.service';
+
+/* interface Dispositivo {
+  id: number,
+  name: string,
+  location: string,
+} */
 
 @Component({
   selector: 'app-listado-dispositivo',
@@ -7,8 +15,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListadoDispositivoComponent  implements OnInit {
 
-  constructor() { }
+ listado:Dispositivo[]=[];
+  
+  constructor( private _dispositivoService: DispositivoService) { 
+   
 
-  ngOnInit() {}
+  }
+  
 
+  async ngOnInit() {
+    await this._dispositivoService.getDispositivos()
+      .then((dispositivos) => {
+
+       /*  var listado: Dispositivo[] = dispositivos */
+       this.listado = dispositivos;
+        console.log(this.listado)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    console.log('Me ejecuto primero')
+  }
+
+ 
 }

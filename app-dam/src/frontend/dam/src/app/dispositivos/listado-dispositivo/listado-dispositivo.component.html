@@ -1,3 +1,30 @@
-<p>
+<!-- <p>
   listado-dispositivo works!
-</p>
+</p> -->
+
+
+<!-- <div *ngFor="let dispositivo of listado; let i = index">
+
+  <ul style="background-color:blue;" >
+    <p>Dispositivo: {{ dispositivo.nombre }} Index: {{ i }}</p>
+    <p>Ubicación: {{ dispositivo.ubicacion }}</p>
+  </ul>
+  
+</div> -->
+
+
+<div *ngFor="let dispositivo of listado;">
+
+  <!-- <ul style="background-color:blue;" >
+    <p>Dispositivo: {{ dispositivo.nombre }} </p>
+    <p>Ubicación: {{ dispositivo.ubicacion }}</p>
+  </ul> -->
+
+  <ion-list>
+    <ion-item>
+      <ion-label> Dispositivo: {{ dispositivo.nombre }}  </ion-label>
+      <ion-label> Ubicación:  {{ dispositivo.ubicacion }}</ion-label>
+    </ion-item>
+  </ion-list>
+  
+</div>

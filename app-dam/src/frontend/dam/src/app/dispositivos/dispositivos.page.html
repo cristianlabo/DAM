@@ -1,6 +1,6 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>dispositivos</ion-title>
+    <ion-title >Dispositivos</ion-title>
   </ion-toolbar>
   <button (click)="subscribe()">Sub</button>
   <br>
@@ -8,7 +8,7 @@
   <br>
   <ion-button (click)="requestPrueba()">Request prueba</ion-button>
 
- <!--  <app-dispositivos></app-dispositivos> -->
+ 
 
  <app-listado-dispositivo> </app-listado-dispositivo>
 
@@ -21,3 +21,21 @@
     </ion-toolbar>
   </ion-header>
 </ion-content>
+ -->
+
+
+ <ion-header class="ion-padding" [translucent]="true" >
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Dispositivos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<app-listado-dispositivo> </app-listado-dispositivo>
+
+
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title style="text-align: center;">Smart Home</ion-title>
+  </ion-toolbar>
+</ion-footer>
