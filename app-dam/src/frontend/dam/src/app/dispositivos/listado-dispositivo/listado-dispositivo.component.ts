@@ -3,11 +3,6 @@ import { Dispositivo } from 'src/app/interfaces/interfaces';
 import { DispositivoService } from 'src/app/services/dispositivo.service';
 
 
-/* interface Dispositivo {
-  id: number,
-  name: string,
-  location: string,
-} */
 
 @Component({
   selector: 'app-listado-dispositivo',
@@ -31,14 +26,13 @@ export class ListadoDispositivoComponent  implements OnInit {
     await this._dispositivoService.getDispositivos()
       .then((dispositivos) => {
 
-       /*  var listado: Dispositivo[] = dispositivos */
        this.listado = dispositivos;
         console.log(this.listado)
       })
       .catch((error) => {
         console.log(error)
       })
-    console.log('Me ejecuto primero')
+    /* console.log('Me ejecuto primero') */
   }
 
   VerDetalle () {

@@ -1,3 +1,4 @@
+// conectado al contenedor docker exec -it ionic-ui bash
 //correr antes npm install --save highcharts
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';

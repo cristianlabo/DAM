@@ -1,41 +1,25 @@
-<!-- <p>
-  listado-dispositivo works!
-</p> -->
-
-
-<!-- <div *ngFor="let dispositivo of listado; let i = index">
-
-  <ul style="background-color:blue;" >
-    <p>Dispositivo: {{ dispositivo.nombre }} Index: {{ i }}</p>
-    <p>Ubicación: {{ dispositivo.ubicacion }}</p>
-  </ul>
-  
-</div> -->
-
 
 <div *ngFor="let dispositivo of listado;">
-
-  <!-- <ul style="background-color:blue;" >
-    <p>Dispositivo: {{ dispositivo.nombre }} </p>
-    <p>Ubicación: {{ dispositivo.ubicacion }}</p>
-  </ul> -->
 
   <ion-list appColorear>
     <ion-item >
       <ion-label > Dispositivo: {{ dispositivo.nombre }}  </ion-label>
       <ion-label> Ubicación:  {{ dispositivo.ubicacion }}</ion-label>
-      <button (click)="VerDetalle()">Boton {{ dispositivo.dispositivoId }}</button>
-      
+    
+      <ion-button (click)="VerDetalle()"> Detalle {{ dispositivo.nombre }} </ion-button>
     </ion-item>
   </ion-list>
   
 </div>
 
-<div *ngIf="DetalleState;"> <button (click)="CerrarDetalle()"> Cerrar detalle</button></div>
+<div style="text-align: center;"> 
 
+  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle</ion-button></div>
 
+  <div *ngIf="DetalleState;"> <app-sensor-detalle> </app-sensor-detalle> </div>
 
-<div *ngIf="DetalleState;"> <app-sensor-detalle> </app-sensor-detalle> </div>
+</div>
+
 
 
 
