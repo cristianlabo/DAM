@@ -14,6 +14,16 @@ require('highcharts/modules/solid-gauge')(Highcharts);
 
 export class SensorDetalleComponent implements OnInit {
 
+   constructor() { 
+   }
+ 
+   ngOnInit() {
+   }
+ 
+ 
+ }
+/* export class SensorDetalleComponent implements OnInit {
+
  private valorObtenido:number=0;
   public myChart:any;
   public chartOptions:any;
@@ -111,4 +121,4 @@ export class SensorDetalleComponent implements OnInit {
     this.myChart = Highcharts.chart('highcharts', this.chartOptions );
   }
 
-}
+} */
