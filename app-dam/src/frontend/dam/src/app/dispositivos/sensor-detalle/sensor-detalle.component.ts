@@ -1,5 +1,7 @@
 // conectado al contenedor docker exec -it ionic-ui bash
-//correr antes npm install --save highcharts
+// correr antes npm install --save highcharts
+import { MedicionesService } from 'src/app/services/mediciones.service';
+import { Medicion } from 'src/app/interfaces/interfaces';
 import { Component, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 declare var require: any;
@@ -14,12 +16,49 @@ require('highcharts/modules/solid-gauge')(Highcharts);
 
 export class SensorDetalleComponent implements OnInit {
 
-   constructor() { 
+  listadoMediciones: Medicion[] =[];
+  public DetalleMedicion: boolean = false
+
+   constructor(private _medicionesService: MedicionesService) { 
    }
  
-   ngOnInit() {
-   }
+  ngOnInit() {
+    
+  }
+
+  async obtenerMediciones(dispositivoId:number){
+
+    await this._medicionesService.getMediciones(dispositivoId)
+    .then((mediciones) => {
+
+      console.log("entro a mediciones")
+     this.listadoMediciones = mediciones;
+      console.log(this.listadoMediciones)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }
+
+/*   listarMediciones(){
+
+    
+
+  } */
+
+  abrirDetalleMedicion(){
+
+    this.obtenerMediciones(2);
+    this.DetalleMedicion = true;
+
+  }
+
+  CerrarDetalleMedicion(){
+    this.DetalleMedicion = false;
+  }
  
+   
  
  }
 /* export class SensorDetalleComponent implements OnInit {

@@ -25,14 +25,14 @@ export class DispositivosPage implements OnInit, OnDestroy {
 
   
   async ngOnInit() {
-    await this._dispositivoService.getDispositivos()
+   /*  await this._dispositivoService.getDispositivos()
       .then((dispositivos) => {
         console.log(dispositivos)
       })
       .catch((error) => {
         console.log(error)
       })
-    console.log('Me ejecuto primero')
+    console.log('Me ejecuto primero') */
   }
 
 /*   ionViewWillEnter () {

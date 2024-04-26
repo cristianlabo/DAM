@@ -11,9 +11,44 @@
 
   <div> <ion-button> ABRIR ELECTROVALVULA </ion-button></div>
 
-  <div> <ion-button> VER TODAS LAS MEDICIONES</ion-button></div>
+  <div> <ion-button (click) ="abrirDetalleMedicion()"> VER TODAS LAS MEDICIONES</ion-button></div>
   
   <div> <ion-button> VER LOG RIEGOS</ion-button></div>
+
+  <div *ngIf="DetalleMedicion;" > <ion-button (click)="CerrarDetalleMedicion()" > Cerrar detalle Medicion </ion-button></div>
+
+  <div *ngIf="DetalleMedicion;"> 
+  
+  <ion-list appColorear>
+    <ion-item>
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col>fecha</ion-col>
+          <ion-col>valor</ion-col>
+          <ion-col>dispositivoId</ion-col>
+        </ion-row>
+      </ion-grid>
+  </ion-item>
+  </ion-list>
+
+    <div *ngFor="let medicion of listadoMediciones;">
+
+      <ion-list appColorear>
+        <ion-item >
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col>{{ medicion.fecha }}</ion-col>
+              <ion-col>{{ medicion.valor }}</ion-col>
+              <ion-col>{{ medicion.dispositivoId }}</ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-item>
+      </ion-list>
+      
+    </div>
+  
+  </div>
 
  </div>
 

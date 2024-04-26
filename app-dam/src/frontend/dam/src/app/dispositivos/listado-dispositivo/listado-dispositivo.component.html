@@ -1,5 +1,5 @@
 
-<div *ngFor="let dispositivo of listado;">
+<div *ngFor="let dispositivo of listadoDispositivo;">
 
   <ion-list appColorear>
     <ion-item >
@@ -14,7 +14,7 @@
 
 <div style="text-align: center;"> 
 
-  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle </ion-button></div>
+  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle Sensor </ion-button></div>
 
   <div *ngIf="DetalleState;"> <app-sensor-detalle> </app-sensor-detalle> </div>
 

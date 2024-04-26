@@ -14,25 +14,28 @@ import { DispositivoService } from 'src/app/services/dispositivo.service';
 export class ListadoDispositivoComponent  implements OnInit {
 
  public DetalleState: boolean = false
- listado:Dispositivo[]=[];
+ listadoDispositivo:Dispositivo[]=[];
   
   constructor( private _dispositivoService: DispositivoService) { 
-   
-
   }
   
+  /* dispositivoActualId: number = 1; */
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.obtenerDispositivos();
+  }
+
+
+  async obtenerDispositivos() {
     await this._dispositivoService.getDispositivos()
       .then((dispositivos) => {
 
-       this.listado = dispositivos;
-        console.log(this.listado)
+       this.listadoDispositivo = dispositivos;
+        console.log(this.listadoDispositivo)
       })
       .catch((error) => {
         console.log(error)
       })
-    /* console.log('Me ejecuto primero') */
   }
 
   VerDetalle () {
