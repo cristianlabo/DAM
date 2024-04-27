@@ -23,7 +23,7 @@ export class SensorDetalleComponent implements OnInit {
    }
  
   ngOnInit() {
-    
+    this.postear(2)
   }
 
   async obtenerMediciones(dispositivoId:number){
@@ -40,6 +40,23 @@ export class SensorDetalleComponent implements OnInit {
     })
 
   }
+
+  
+  async postear(dispositivoId:number){
+
+    await this._medicionesService.postMediciones(dispositivoId)
+    .then((mediciones) => {
+
+      console.log("entro a post")
+     
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }
+  
+
 
 /*   listarMediciones(){
 

@@ -38,6 +38,7 @@ export class ListadoDispositivoComponent  implements OnInit {
       })
   }
 
+
   VerDetalle () {
    this.DetalleState = true
   }
