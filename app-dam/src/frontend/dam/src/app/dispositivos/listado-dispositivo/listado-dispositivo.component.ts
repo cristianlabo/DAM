@@ -15,6 +15,8 @@ export class ListadoDispositivoComponent  implements OnInit {
 
  public DetalleState: boolean = false
  listadoDispositivo:Dispositivo[]=[];
+ dispositivoActualId:number = 3;
+ 
   
   constructor( private _dispositivoService: DispositivoService) { 
   }
@@ -39,7 +41,8 @@ export class ListadoDispositivoComponent  implements OnInit {
   }
 
 
-  VerDetalle () {
+  VerDetalle (dispositivoId:number) {
+   this.dispositivoActualId = dispositivoId;
    this.DetalleState = true
   }
 

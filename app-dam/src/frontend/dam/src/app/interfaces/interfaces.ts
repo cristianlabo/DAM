@@ -11,3 +11,16 @@ export interface Medicion {
     valor: string,
     dispositivoId: number,
 }
+
+
+export interface LogRiego {
+    nombreSensor: string,
+    nombreElectrovalvula: string,
+    logRiegoId: number,
+    apertura: number,
+    fecha: Date,
+    electrovalvulaId: number
+
+}
+
+

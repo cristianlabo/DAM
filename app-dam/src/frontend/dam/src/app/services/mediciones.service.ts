@@ -21,11 +21,11 @@ export class MedicionesService {
     /* return   firstValueFrom(this._http.get(`http://localhost:8000/ultimaMedicion/${dispositivoId}`))*/
   } 
 
-  postMediciones (dispositivoId:number): Promise<any> {
+ /*  postMediciones (dispositivoId:number): Promise<any> {
     
     
     return   firstValueFrom(this._http.post(`http://localhost:8000/aperturaElectrovalvula`,{ "dispositivoId": `${dispositivoId}`} ))  
 
-  } 
+  }  */
 
 }

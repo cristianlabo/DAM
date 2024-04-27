@@ -6,50 +6,100 @@
 <!-- <div> <ion-button (click)="CerrarDetalle()" > ABRIR ELECTROVALVULA </ion-button></div>
  -->
  <div>
-
   <div> </div>
-
+  <div> <p> Ultima medicion de Humedad: {{UltimaMedicion.valor}}</p></div>
   <div> <ion-button> ABRIR ELECTROVALVULA </ion-button></div>
-
   <div> <ion-button (click) ="abrirDetalleMedicion()"> VER TODAS LAS MEDICIONES</ion-button></div>
-  
-  <div> <ion-button> VER LOG RIEGOS</ion-button></div>
+  <div> <ion-button (click) ="abrirDetalleLogRiegos()"> VER LOG RIEGOS</ion-button></div>
+  <div> <br></div>
+ </div>
 
-  <div *ngIf="DetalleMedicion;" > <ion-button (click)="CerrarDetalleMedicion()" > Cerrar detalle Medicion </ion-button></div>
 
-  <div *ngIf="DetalleMedicion;"> 
-  
-  <ion-list appColorear>
-    <ion-item>
-      <ion-grid [fixed]="true">
-        <ion-row>
-          <ion-col>fecha</ion-col>
-          <ion-col>valor</ion-col>
-          <ion-col>dispositivoId</ion-col>
-        </ion-row>
-      </ion-grid>
-  </ion-item>
-  </ion-list>
+ 
+ <div *ngIf="DetalleMedicion;" > <ion-button (click)="CerrarDetalleMedicion()" > Cerrar detalle Medicion {{dispositivoId}}</ion-button></div>
 
-    <div *ngFor="let medicion of listadoMediciones;">
+ <div *ngIf="DetalleMedicion;"> 
+ 
+ <ion-list appColorear>
+   <ion-item>
+     <ion-grid [fixed]="true">
+       <ion-row>
+         <ion-col>fecha</ion-col>
+         <ion-col>valor</ion-col>
+         <ion-col>dispositivoId</ion-col>
+       </ion-row>
+     </ion-grid>
+ </ion-item>
+ </ion-list>
 
-      <ion-list appColorear>
-        <ion-item >
-          <ion-grid [fixed]="true">
-            <ion-row>
-              <ion-col>{{ medicion.fecha }}</ion-col>
-              <ion-col>{{ medicion.valor }}</ion-col>
-              <ion-col>{{ medicion.dispositivoId }}</ion-col>
-            </ion-row>
-          </ion-grid>
+   <div *ngFor="let medicion of listadoMediciones;">
 
-        </ion-item>
-      </ion-list>
-      
-    </div>
-  
+     <ion-list appColorear>
+       <ion-item >
+         <ion-grid [fixed]="true">
+           <ion-row>
+             <ion-col>{{ medicion.fecha }}</ion-col>
+             <ion-col>{{ medicion.valor }}</ion-col>
+             <ion-col>{{ medicion.dispositivoId }}</ion-col>
+           </ion-row>
+         </ion-grid>
+
+       </ion-item>
+     </ion-list>
+     
+   </div>
+
   </div>
 
- </div>
+<div> <br></div>
+
+ <div *ngIf="DetalleLogRiegos;" > <ion-button (click)="CerrarDetalleLogRiegos()" > Cerrar Log Riegos {{dispositivoId}}</ion-button></div>
+
+ <div *ngIf="DetalleLogRiegos;"> 
+ 
+      <ion-list appColorear>
+        <ion-item>
+          <ion-grid [fixed]="true">
+            <ion-row>
+              <ion-col>nombreSensor</ion-col>
+              <ion-col>nombreElectrovalvula</ion-col>
+              <ion-col>logRiegoId</ion-col>
+              <ion-col>apertura</ion-col>
+              <ion-col>fecha</ion-col>
+              <ion-col>electrovalvulaId</ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-item>
+      </ion-list>
+
+   <div *ngFor="let Riego of listadoLogRiegos;">
+
+        <ion-list appColorear>
+          <ion-item >
+            <ion-grid [fixed]="true">
+              <ion-row>
+                <ion-col>{{ Riego.nombreSensor }}</ion-col>
+                <ion-col>{{ Riego.nombreElectrovalvula }}</ion-col>
+                <ion-col>{{ Riego.logRiegoId }}</ion-col>
+                <ion-col>{{ Riego.apertura }}</ion-col>
+                <ion-col>{{ Riego.fecha }}</ion-col>
+                <ion-col>{{ Riego.electrovalvulaId }}</ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-item>
+        </ion-list>
+     
+   </div>
+   <ion-content scroll-y="false">
+  
+    <ion-infinite-scroll>
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-content>
+
+  </div>
+ 
+
 
 

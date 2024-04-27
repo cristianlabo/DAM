@@ -1,22 +1,33 @@
 
-<div *ngFor="let dispositivo of listadoDispositivo;">
 
-  <ion-list appColorear>
-    <ion-item >
-      <ion-label > Dispositivo: {{ dispositivo.nombre }}  </ion-label>
-      <ion-label> Ubicación:  {{ dispositivo.ubicacion }}</ion-label>
-    
-      <ion-button (click)="VerDetalle()"> Detalle {{ dispositivo.nombre }} </ion-button>
-    </ion-item>
-  </ion-list>
+<div *ngIf="!DetalleState;" > 
+
+
+  <div *ngFor="let dispositivo of listadoDispositivo;">
+
+    <ion-list appColorear>
+      <ion-item >
   
+        <ion-avatar>
+          <ion-img  width="10px" height="10px"  src="assets/icon/sensorHumedad.png" ></ion-img>
+        </ion-avatar>
+       
+        <ion-label >  Dispositivo: {{ dispositivo.nombre }}  </ion-label>
+        <ion-label>   Ubicación:  {{ dispositivo.ubicacion }}</ion-label>
+      
+        <ion-button (click)="VerDetalle(dispositivo.dispositivoId)" >  Detalle {{ dispositivo.nombre }} </ion-button>
+      </ion-item>
+    </ion-list>
+    
+  </div>
+
 </div>
 
 <div style="text-align: center;"> 
 
-  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle Sensor </ion-button></div>
+  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle Sensor {{dispositivoActualId}}</ion-button></div>
 
-  <div *ngIf="DetalleState;"> <app-sensor-detalle> </app-sensor-detalle> </div>
+  <div *ngIf="DetalleState;"> <app-sensor-detalle [dispositivoId]= dispositivoActualId > </app-sensor-detalle> </div>
 
 </div>
 

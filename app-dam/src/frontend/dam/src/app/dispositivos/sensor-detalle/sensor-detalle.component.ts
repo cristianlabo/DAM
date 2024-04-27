@@ -1,12 +1,12 @@
 // conectado al contenedor docker exec -it ionic-ui bash
 // correr antes npm install --save highcharts
-import { MedicionesService } from 'src/app/services/mediciones.service';
-import { Medicion } from 'src/app/interfaces/interfaces';
+import { UltimaMedicionService } from '../../services/ultima-medicion.service';
+import { MedicionesService } from '../../services/mediciones.service';
+import { Medicion } from '../../interfaces/interfaces';
+import { LogRiegosService } from '../../services/log-riegos.service';
+import { LogRiego } from '../../interfaces/interfaces';
 import { Component, OnInit } from '@angular/core';
-import * as Highcharts from 'highcharts';
-declare var require: any;
-require('highcharts/highcharts-more')(Highcharts);
-require('highcharts/modules/solid-gauge')(Highcharts);
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-sensor-detalle',
@@ -16,15 +16,43 @@ require('highcharts/modules/solid-gauge')(Highcharts);
 
 export class SensorDetalleComponent implements OnInit {
 
-  listadoMediciones: Medicion[] =[];
-  public DetalleMedicion: boolean = false
+  @Input() dispositivoId: number =2;
 
-   constructor(private _medicionesService: MedicionesService) { 
+  UltimaMedicion: Medicion = { medicionId: 1, fecha: new Date(), valor: "", dispositivoId: 1};
+
+  listadoMediciones: Medicion[] =[];
+  DetalleMedicion: boolean = false;
+  
+
+  listadoLogRiegos: LogRiego[] =[];
+  DetalleLogRiegos: boolean = false;
+
+   constructor(private _medicionesService: MedicionesService,private _logRiegosService: LogRiegosService,private _UltimaMedicionService: UltimaMedicionService) { 
    }
  
   ngOnInit() {
-    this.postear(2)
+   /*  this.postear(this.dispositivoId) */
+   /* this.obtenerMediciones(this.dispositivoId); */
+   this.obtenerUltimaMedicion(this.dispositivoId);
+    console.log(this.dispositivoId);
   }
+
+
+  async obtenerUltimaMedicion(dispositivoId:number){
+
+    await this._UltimaMedicionService.getUltimaMedicion(dispositivoId)
+    .then((medicion) => {
+
+      console.log("entro a ultima medicion")
+     this.UltimaMedicion = medicion[0];
+      console.log(this.UltimaMedicion)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }
+
 
   async obtenerMediciones(dispositivoId:number){
 
@@ -41,8 +69,52 @@ export class SensorDetalleComponent implements OnInit {
 
   }
 
+  abrirDetalleMedicion(){
+
+    this.obtenerMediciones(this.dispositivoId);
+    this.DetalleMedicion = true;
+
+  }
+
+  CerrarDetalleMedicion(){
+    this.DetalleMedicion = false;
+  }
+
+
+  async obtenerLogRiegos(dispositivoId:number){
+
+    await this._logRiegosService.getLogRiegos(dispositivoId)
+    .then((LogRiegos) => {
+
+      console.log("entro a log riegos")
+     this.listadoLogRiegos = LogRiegos;
+      console.log(this.listadoLogRiegos)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+
+  }
+
+
+  abrirDetalleLogRiegos(){
+
+    this.obtenerLogRiegos(this.dispositivoId);
+    this.DetalleLogRiegos = true;
+
+    console.log("Entra a log de riegos");
+
+  }
+
+  CerrarDetalleLogRiegos(){
+
+    
+    this.DetalleLogRiegos = false;
+
+  }
+ 
   
-  async postear(dispositivoId:number){
+  /* async postear(dispositivoId:number){
 
     await this._medicionesService.postMediciones(dispositivoId)
     .then((mediciones) => {
@@ -55,7 +127,7 @@ export class SensorDetalleComponent implements OnInit {
     })
 
   }
-  
+   */
 
 
 /*   listarMediciones(){
@@ -64,117 +136,6 @@ export class SensorDetalleComponent implements OnInit {
 
   } */
 
-  abrirDetalleMedicion(){
-
-    this.obtenerMediciones(2);
-    this.DetalleMedicion = true;
-
-  }
-
-  CerrarDetalleMedicion(){
-    this.DetalleMedicion = false;
-  }
  
    
- 
  }
-/* export class SensorDetalleComponent implements OnInit {
-
- private valorObtenido:number=0;
-  public myChart:any;
-  public chartOptions:any;
-
-  constructor() { 
-    setTimeout(()=>{
-      console.log("Cambio el valor del sensor");
-      this.valorObtenido=60;
-      //llamo al update del chart para refrescar y mostrar el nuevo valor
-      this.myChart.update({series: [{
-          name: 'kPA',
-          data: [this.valorObtenido],
-          tooltip: {
-              valueSuffix: ' kPA'
-          }
-      }]});
-    },6000);
-  }
-
-  ngOnInit() {
-  }
-
-  ionViewDidEnter() {
-    this.generarChart();
-  }
-
-  generarChart() {
-    this.chartOptions={
-      chart: {
-          type: 'gauge',
-          plotBackgroundColor: null,
-          plotBackgroundImage: null,
-          plotBorderWidth: 0,
-          plotShadow: false
-        }
-        ,title: {
-          text: 'Sensor N° 1'
-        }
-
-        ,credits:{enabled:false}
-        
-           
-        ,pane: {
-            startAngle: -150,
-            endAngle: 150
-        } 
-        // the value axis
-      ,yAxis: {
-        min: 0,
-        max: 100,
-  
-        minorTickInterval: 'auto',
-        minorTickWidth: 1,
-        minorTickLength: 10,
-        minorTickPosition: 'inside',
-        minorTickColor: '#666',
-  
-        tickPixelInterval: 30,
-        tickWidth: 2,
-        tickPosition: 'inside',
-        tickLength: 10,
-        tickColor: '#666',
-        labels: {
-            step: 2,
-            rotation: 'auto'
-        },
-        title: {
-            text: 'kPA'
-        },
-        plotBands: [{
-            from: 0,
-            to: 10,
-            color: '#55BF3B' // green
-        }, {
-            from: 10,
-            to: 30,
-            color: '#DDDF0D' // yellow
-        }, {
-            from: 30,
-            to: 100,
-            color: '#DF5353' // red
-        }]
-    }
-    ,
-  
-    series: [{
-        name: 'kPA',
-        data: [this.valorObtenido],
-        tooltip: {
-            valueSuffix: ' kPA'
-        }
-    }]
-
-    };
-    this.myChart = Highcharts.chart('highcharts', this.chartOptions );
-  }
-
-} */
