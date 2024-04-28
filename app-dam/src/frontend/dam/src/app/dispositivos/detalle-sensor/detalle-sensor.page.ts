@@ -8,7 +8,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UltimaMedicionService } from '../../services/ultima-medicion.service';
-import { Medicion } from '../../interfaces/interfaces';
 import * as Highcharts from 'highcharts';
 declare var require: any;
 require('highcharts/highcharts-more')(Highcharts);
