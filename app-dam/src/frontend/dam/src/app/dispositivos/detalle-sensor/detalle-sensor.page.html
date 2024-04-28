@@ -1,10 +1,15 @@
+<div style="overflow-y: scroll;"> 
 
-<ion-header class="ion-padding" [translucent]="true" >
+
+  <ion-header class="ion-padding" [translucent]="true" >
   <ion-toolbar>
     <ion-title style="text-align: center;">Detalle sensor</ion-title>
   </ion-toolbar>
 </ion-header>
 
+
+
+ 
 
 <div style="text-align: center;"> 
 
@@ -12,18 +17,13 @@
 
 </div>
 
-<!-- <div>
-  <app-sensor-detalle></app-sensor-detalle>
-</div> -->
 
 <div style="text-align: center;"> 
 
-  <div > <app-sensor-detalle [dispositivoId]=sensor> </app-sensor-detalle> </div>
+  <div > <app-sensor-detalle [dispositivoId]=sensor (eventoHijo)="onMensajeHijo($event)" > </app-sensor-detalle> </div>
 
 </div>
  
-
-
 
 <ion-footer>
   <ion-toolbar>
@@ -32,19 +32,7 @@
 </ion-footer>
 
 
-
-<!-- <app-listado-dispositivo>   </app-listado-dispositivo> -->
-
-
-<!-- <div style="text-align: center;"> 
-
-  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle Sensor {{dispositivoActualId}}</ion-button></div>
-
-  <div *ngIf="DetalleState;"> <app-sensor-detalle [dispositivoId]= dispositivoActualId > </app-sensor-detalle> </div>
-
-</div> -->
-
-
+</div>
  
 
 

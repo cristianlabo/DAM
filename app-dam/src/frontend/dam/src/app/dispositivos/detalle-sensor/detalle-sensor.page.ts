@@ -1,4 +1,10 @@
 //correr antes npm install --save highcharts
+/* se agrego  accessibility:{
+      enabled: false
+   
+    } */
+
+
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UltimaMedicionService } from '../../services/ultima-medicion.service';
@@ -20,11 +26,13 @@ export class DetalleSensorPage implements OnInit {
   public myChart:any;
   private chartOptions:any;
 
+  /* mensajeHijo:string=""+this.valorObtenido; */
+
   constructor(private _route:ActivatedRoute,private _UltimaMedicionService: UltimaMedicionService) { 
+
     setTimeout(()=>{
       console.log("Cambio el valor del sensor");
-      /* this.valorObtenido=60; */
-      //llamo al update del chart para refrescar y mostrar el nuevo valor
+    
       this.myChart.update({series: [{
           name: 'kPA',
           data: [this.valorObtenido],
@@ -32,16 +40,43 @@ export class DetalleSensorPage implements OnInit {
               valueSuffix: ' kPA'
           }
       }]});
-    },6000);
+    },600);
+    
+   
+   
   }
 
-  ngOnInit() {
+  actualizarUltimaMedicion(valorObtenido:number){
+
+    console.log("Cambio el valor del sensor");
+    /* this.valorObtenido=60; */
+    //llamo al update del chart para refrescar y mostrar el nuevo valor
+    this.myChart.update({series: [{
+        name: 'kPA',
+        data: [this.valorObtenido],
+        tooltip: {
+            valueSuffix: ' kPA'
+        }
+    }]});
+  
+
+
+  }
+
+  onMensajeHijo(mensaje:string) {
+    this.valorObtenido = parseInt(mensaje);
+    this.actualizarUltimaMedicion(this.valorObtenido);
+    console.log(this.valorObtenido)
+   }
+  
+
+  async ngOnInit() {
      let id = this._route.snapshot.paramMap.get('id');
 
      if(id != null){
 
       this.sensor = parseInt(id);
-      this.obtenerUltimaMedicion(this.sensor);
+      await this.obtenerUltimaMedicion(this.sensor);
       console.log(`El valor del sensor detalle es: ${this.sensor}`);
 
      }
@@ -52,8 +87,10 @@ export class DetalleSensorPage implements OnInit {
    
   }
 
-  ionViewDidEnter() {
-    this.generarChart();
+  
+
+  async ionViewDidEnter() {
+      await this.generarChart();
   }
 
   async obtenerUltimaMedicion(dispositivoId:number){
@@ -71,7 +108,7 @@ export class DetalleSensorPage implements OnInit {
 
   }
 
-  generarChart() {
+   generarChart() {
     this.chartOptions={
       chart: {
           type: 'gauge',
@@ -137,9 +174,13 @@ export class DetalleSensorPage implements OnInit {
             valueSuffix: ' kPA'
         }
     }]
+    ,
+    accessibility:{
+      enabled: false
+    }
 
     };
-    this.myChart = Highcharts.chart('highcharts', this.chartOptions );
+     this.myChart =    Highcharts.chart('highcharts', this.chartOptions );
   }
 
 }

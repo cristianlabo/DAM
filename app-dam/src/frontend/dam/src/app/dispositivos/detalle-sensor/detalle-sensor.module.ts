@@ -11,13 +11,15 @@ import { DispositivosPageModule } from '../dispositivos.module';
 
 
 
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
     DetalleSensorPageRoutingModule,
-    DispositivosPageModule
+    DispositivosPageModule,
   ],
   exports: [DetalleSensorPage],
   declarations: [DetalleSensorPage]

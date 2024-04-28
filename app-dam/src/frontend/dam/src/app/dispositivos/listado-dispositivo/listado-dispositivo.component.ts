@@ -21,8 +21,6 @@ export class ListadoDispositivoComponent  implements OnInit {
   
   constructor( private _dispositivoService: DispositivoService) { 
   }
-  
-  /* dispositivoActualId: number = 1; */
 
   ngOnInit() {
     this.obtenerDispositivos();

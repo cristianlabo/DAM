@@ -5,10 +5,10 @@
 
  <div>
   <div> </div>
-  <!-- <div> <p> Ultima medicion de Humedad: {{UltimaMedicion.valor}}</p></div> -->
+  <div> <p> Ultima medicion de Humedad: {{UltimaMedicion.valor}} kPA</p></div>
   
   <div *ngIf="!DetalleElectrovalvula;" > 
-  <div> <ion-button (click) ="abrirElectrovalvula()"> ABRIR ELECTROVALVULA </ion-button></div>
+  <div> <ion-button (click) ="abrirElectrovalvula()" > ABRIR ELECTROVALVULA </ion-button></div>
   </div>
   <div *ngIf="DetalleElectrovalvula;" > <ion-button (click)="CerrarDetalleElectrovalvula()" > CIERRA ELECTROVALVULA</ion-button></div>
   
@@ -17,7 +17,8 @@
   <div> <br></div>
  </div>
 
- 
+
+ <!-- DETALLE MEDICIONES -->
  
  <div *ngIf="DetalleMedicion;" > <ion-button (click)="CerrarDetalleMedicion()" > Cerrar detalle Medicion {{dispositivoId}}</ion-button></div>
 
@@ -55,6 +56,9 @@
   </div>
 
 <div> <br></div>
+
+
+<!-- DETALLE LOG RIEGOS -->
 
  <div *ngIf="DetalleLogRiegos;" > <ion-button (click)="CerrarDetalleLogRiegos()" > Cerrar Log Riegos {{dispositivoId}}</ion-button></div>
 
@@ -101,7 +105,7 @@
     </ion-infinite-scroll>
   </ion-content>
 
-  </div>
+</div>
  
 
 

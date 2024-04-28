@@ -3,10 +3,6 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'detalle-sensor',
-    loadChildren: () => import('../app/dispositivos/detalle-sensor/detalle-sensor.module').then( m => m.DetalleSensorPageModule),
-  },
-  {
     path: '',
     redirectTo: 'dispositivos',
     pathMatch: 'full'
@@ -15,7 +11,10 @@ const routes: Routes = [
     path: 'dispositivos',
     loadChildren: () => import('./dispositivos/dispositivos.module').then( m => m.DispositivosPageModule)
   },
-  
+  {
+    path: 'detalle-sensor',
+    loadChildren: () => import('../app/dispositivos/detalle-sensor/detalle-sensor.module').then( m => m.DetalleSensorPageModule),
+  },
 ];
 
 @NgModule({

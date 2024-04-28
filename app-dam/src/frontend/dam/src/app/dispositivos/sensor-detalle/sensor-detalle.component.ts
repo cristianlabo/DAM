@@ -8,7 +8,7 @@ import { Medicion } from '../../interfaces/interfaces';
 import { LogRiegosService } from '../../services/log-riegos.service';
 import { LogRiego } from '../../interfaces/interfaces';
 import { Component, OnInit } from '@angular/core';
-import { Input } from '@angular/core';
+import { Input,Output,EventEmitter } from '@angular/core';
 
 
 
@@ -21,6 +21,8 @@ import { Input } from '@angular/core';
 export class SensorDetalleComponent implements OnInit {
 
   @Input() dispositivoId: number =1;
+  @Output() eventoHijo = new EventEmitter<string>();
+
 
   UltimaMedicion: Medicion = { medicionId: 1, fecha: new Date(), valor: "", dispositivoId: 1};
 
@@ -37,11 +39,15 @@ export class SensorDetalleComponent implements OnInit {
    constructor(private _medicionesService: MedicionesService,private _logRiegosService: LogRiegosService,private _UltimaMedicionService: UltimaMedicionService,private _AperturaElectrovalvulaService:AperturaElectrovalvulaService, private _CierreElectrovalvulaService:CierreElectrovalvulaService) { 
    }
  
-  ngOnInit() {
-   /* this.obtenerUltimaMedicion(this.dispositivoId);
-    console.log(this.dispositivoId); */
+  async ngOnInit() {
+    await this.obtenerUltimaMedicion(this.dispositivoId);
   }
 
+  enviarPadre() {
+    
+    this.eventoHijo.emit(this.UltimaMedicion.valor)
+  }
+ 
 
   async obtenerUltimaMedicion(dispositivoId:number){
 
@@ -81,7 +87,6 @@ export class SensorDetalleComponent implements OnInit {
 
       console.log("entro a post cerrar electrovalvula")
       console.log(respuesta)
-      /* location.reload(); */
     })
     .catch((error) => {
       console.log(error)
@@ -90,15 +95,20 @@ export class SensorDetalleComponent implements OnInit {
   }
 
 
-  abrirElectrovalvula(){
+  async abrirElectrovalvula(){
 
-    this.postAbrirElectrovalvula(this.dispositivoId);
+    await this.postAbrirElectrovalvula(this.dispositivoId);
+    await this.obtenerLogRiegos(this.dispositivoId);
     this.DetalleElectrovalvula = true;
 
   }
 
-  CerrarDetalleElectrovalvula(){
-    this.postCerrarElectrovalvula(this.dispositivoId);
+  async CerrarDetalleElectrovalvula(){
+    await this.postCerrarElectrovalvula(this.dispositivoId);
+    await this.obtenerUltimaMedicion(this.dispositivoId);
+    await this.obtenerMediciones(this.dispositivoId);
+    await this.obtenerLogRiegos(this.dispositivoId);
+    this.enviarPadre();
     this.DetalleElectrovalvula = false;
   }
 
