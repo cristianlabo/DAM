@@ -14,9 +14,9 @@ import { DispositivoService } from '../../services/dispositivo.service';
 
 export class ListadoDispositivoComponent  implements OnInit {
 
- public DetalleState: boolean = false
+ DetalleState: boolean = false
  listadoDispositivo:Dispositivo[]=[];
- dispositivoActualId:number = 3;
+ dispositivoActualId:number = 1;
  
   
   constructor( private _dispositivoService: DispositivoService) { 

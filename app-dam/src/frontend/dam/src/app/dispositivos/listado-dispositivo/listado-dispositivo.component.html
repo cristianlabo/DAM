@@ -1,6 +1,7 @@
 
 
-<div *ngIf="!DetalleState;" > 
+
+<div> 
 
 
   <div *ngFor="let dispositivo of listadoDispositivo;">
@@ -15,22 +16,23 @@
         <ion-label >  Dispositivo: {{ dispositivo.nombre }}  </ion-label>
         <ion-label>   Ubicación:  {{ dispositivo.ubicacion }}</ion-label>
       
-        <ion-button (click)="VerDetalle(dispositivo.dispositivoId)" >  Detalle {{ dispositivo.nombre }} </ion-button>
+        <ion-button (click)="VerDetalle(dispositivo.dispositivoId)"  [routerLink]="['/detalle-sensor/',dispositivo.dispositivoId]"  >  Detalle {{ dispositivo.nombre }} </ion-button>
       </ion-item>
     </ion-list>
     
   </div>
 
+  
 </div>
 
-<div style="text-align: center;"> 
+<!-- <div style="text-align: center;"> 
 
-  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()" > Cerrar detalle Sensor {{dispositivoActualId}}</ion-button></div>
+  <div *ngIf="DetalleState;" > <ion-button (click)="CerrarDetalle()"  > Cerrar detalle Sensor {{dispositivoActualId}}</ion-button></div>
 
   <div *ngIf="DetalleState;"> <app-sensor-detalle [dispositivoId]= dispositivoActualId > </app-sensor-detalle> </div>
 
 </div>
-
+ -->
 
 
 

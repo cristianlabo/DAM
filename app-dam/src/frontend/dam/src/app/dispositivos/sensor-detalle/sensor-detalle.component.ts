@@ -20,7 +20,7 @@ import { Input } from '@angular/core';
 
 export class SensorDetalleComponent implements OnInit {
 
-  @Input() dispositivoId: number =2;
+  @Input() dispositivoId: number =1;
 
   UltimaMedicion: Medicion = { medicionId: 1, fecha: new Date(), valor: "", dispositivoId: 1};
 
@@ -38,10 +38,8 @@ export class SensorDetalleComponent implements OnInit {
    }
  
   ngOnInit() {
-   /*  this.postear(this.dispositivoId) */
-   /* this.obtenerMediciones(this.dispositivoId); */
-   this.obtenerUltimaMedicion(this.dispositivoId);
-    console.log(this.dispositivoId);
+   /* this.obtenerUltimaMedicion(this.dispositivoId);
+    console.log(this.dispositivoId); */
   }
 
 
@@ -65,8 +63,10 @@ export class SensorDetalleComponent implements OnInit {
     await this._AperturaElectrovalvulaService.postAperturaElectrovalvula(dispositivoId)
     .then((respuesta) => {
 
+
       console.log("entro a post apertura electrovalvula")
       console.log(respuesta)
+      /* location.reload(); */
     })
     .catch((error) => {
       console.log(error)
@@ -81,6 +81,7 @@ export class SensorDetalleComponent implements OnInit {
 
       console.log("entro a post cerrar electrovalvula")
       console.log(respuesta)
+      /* location.reload(); */
     })
     .catch((error) => {
       console.log(error)
@@ -161,30 +162,6 @@ export class SensorDetalleComponent implements OnInit {
     this.DetalleLogRiegos = false;
 
   }
- 
-  
-  /* async postear(dispositivoId:number){
-
-    await this._medicionesService.postMediciones(dispositivoId)
-    .then((mediciones) => {
-
-      console.log("entro a post")
-     
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-
-  }
-   */
-
-
-/*   listarMediciones(){
-
-    
-
-  } */
-
  
    
  }

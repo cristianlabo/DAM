@@ -23,6 +23,7 @@ import { FechaPipePipe } from '../pipe/fecha-pipe.pipe';
     DispositivosPageRoutingModule
     
   ],
+  exports:[DispositivosPage,ListadoDispositivoComponent,SensorDetalleComponent],
   declarations: [DispositivosPage,ListadoDispositivoComponent,SensorDetalleComponent,ColorearDirective ,FechaPipePipe ]
 })
 export class DispositivosPageModule {}
