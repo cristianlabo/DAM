@@ -1,6 +1,7 @@
 import { Component, Directive, OnInit } from '@angular/core';
-import { Dispositivo } from 'src/app/interfaces/interfaces';
-import { DispositivoService } from 'src/app/services/dispositivo.service';
+import { Dispositivo } from '../../interfaces/interfaces';
+import { DispositivoService } from '../../services/dispositivo.service';
+
 
 
 

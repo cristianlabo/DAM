@@ -7,14 +7,19 @@
  -->
  <div>
   <div> </div>
-  <div> <p> Ultima medicion de Humedad: {{UltimaMedicion.valor}}</p></div>
-  <div> <ion-button> ABRIR ELECTROVALVULA </ion-button></div>
-  <div> <ion-button (click) ="abrirDetalleMedicion()"> VER TODAS LAS MEDICIONES</ion-button></div>
-  <div> <ion-button (click) ="abrirDetalleLogRiegos()"> VER LOG RIEGOS</ion-button></div>
+  <div  > <p> Ultima medicion de Humedad: {{UltimaMedicion.valor}}</p></div>
+  
+  <div *ngIf="!DetalleElectrovalvula;" > 
+  <div> <ion-button (click) ="abrirElectrovalvula()"> ABRIR ELECTROVALVULA </ion-button></div>
+  </div>
+  <div *ngIf="DetalleElectrovalvula;" > <ion-button (click)="CerrarDetalleElectrovalvula()" > CIERRA ELECTROVALVULA</ion-button></div>
+  
+  <div *ngIf="!DetalleMedicion;" > <ion-button (click) ="abrirDetalleMedicion()"> VER TODAS LAS MEDICIONES</ion-button></div>
+  <div *ngIf="!DetalleLogRiegos;" > <ion-button (click) ="abrirDetalleLogRiegos()"> VER LOG RIEGOS</ion-button></div>
   <div> <br></div>
  </div>
 
-
+ 
  
  <div *ngIf="DetalleMedicion;" > <ion-button (click)="CerrarDetalleMedicion()" > Cerrar detalle Medicion {{dispositivoId}}</ion-button></div>
 
@@ -38,7 +43,7 @@
        <ion-item >
          <ion-grid [fixed]="true">
            <ion-row>
-             <ion-col>{{ medicion.fecha }}</ion-col>
+             <ion-col>{{ medicion.fecha | fechaPipe }}</ion-col>
              <ion-col>{{ medicion.valor }}</ion-col>
              <ion-col>{{ medicion.dispositivoId }}</ion-col>
            </ion-row>
@@ -82,7 +87,7 @@
                 <ion-col>{{ Riego.nombreElectrovalvula }}</ion-col>
                 <ion-col>{{ Riego.logRiegoId }}</ion-col>
                 <ion-col>{{ Riego.apertura }}</ion-col>
-                <ion-col>{{ Riego.fecha }}</ion-col>
+                <ion-col>{{ Riego.fecha | fechaPipe }}</ion-col>
                 <ion-col>{{ Riego.electrovalvulaId }}</ion-col>
               </ion-row>
             </ion-grid>

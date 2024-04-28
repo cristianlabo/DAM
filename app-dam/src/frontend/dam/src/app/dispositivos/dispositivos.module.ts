@@ -9,7 +9,10 @@ import { DispositivosPageRoutingModule } from './dispositivos-routing.module';
 import { DispositivosPage } from './dispositivos.page';
 import { ListadoDispositivoComponent } from './listado-dispositivo/listado-dispositivo.component';
 import { SensorDetalleComponent } from './sensor-detalle/sensor-detalle.component';
-import { ColorearDirective } from 'src/app/directivas/colorear.directive';
+import { ColorearDirective } from '../directivas/colorear.directive';
+import { FechaPipePipe } from '../pipe/fecha-pipe.pipe';
+
+
 
 @NgModule({
   
@@ -20,6 +23,6 @@ import { ColorearDirective } from 'src/app/directivas/colorear.directive';
     DispositivosPageRoutingModule
     
   ],
-  declarations: [DispositivosPage,ListadoDispositivoComponent,SensorDetalleComponent,ColorearDirective]
+  declarations: [DispositivosPage,ListadoDispositivoComponent,SensorDetalleComponent,ColorearDirective ,FechaPipePipe ]
 })
 export class DispositivosPageModule {}

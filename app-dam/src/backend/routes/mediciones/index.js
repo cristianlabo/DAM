@@ -4,7 +4,7 @@ const pool = require('../../mysql-connector')
 const routerMediciones = express.Router()
 
 routerMediciones.get('/:id', function (req, res) {
-    pool.query(`Select * from Mediciones where dispositivoId= ${req.params.id}`, function(err, result, fields) {
+    pool.query(`Select * from Mediciones where dispositivoId= ${req.params.id} order by fecha desc;`, function(err, result, fields) {
         if (err) {
             res.send(err).status(400);
             return;
